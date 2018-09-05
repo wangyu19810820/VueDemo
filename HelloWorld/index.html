@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    
+</head>
+<body>
+    <div id="myApp">{{ message }}</div>
+    <div id="myApp2">
+        <span v-bind:title="message">鼠标悬停查看效果</span>
+    </div>
+    <div id="myApp3">
+        <span v-if="seen">能否看到此段文本</span>
+    </div>
+    <div id="myApp4">
+        <ul>
+            <li v-for="todo in todoList">{{ todo }}</li>
+        </ul>
+    </div>
+    <div id="myApp5">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">翻转文本</button>
+    </div>
+    <div id="myApp6">
+        <p>{{ message }}</p>
+        <input type="text" v-model="message">
+    </div>
+    <div id="myApp7">
+        <ol>
+            <todo-item v-for="todo in todoList"
+                v-bind:todo_item="todo"
+                v-bind:key="todo.key">
+            </todo-item>
+        </ol>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
