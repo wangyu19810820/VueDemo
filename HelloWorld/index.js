@@ -47,6 +47,7 @@ let myApp6 = new Vue({
     }
 })
 
+// 组件需写在宿主Vue对象之前
 Vue.component('todo-item', {
     props: ['todo_item'],
     template: '<li>{{ todo_item.text }}</li>'

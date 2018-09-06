@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="vm1">
+        <!-- 判断为真，则显示，判断为false则不显示 -->
+        <div v-if="Math.random() > 0.5">
+            text one
+        </div>
+        <!-- 除了if外，还有else -->
+        <div v-else>
+            text two
+        </div>
+
+        <!-- 除了if，elseif，else -->
+        <div v-if="type1 === 'A'">
+            type A
+        </div>
+        <div v-else-if="type1 === 'B'">
+            type B
+        </div>
+        <div v-else>
+            type C
+        </div>
+
+        <!-- template可以做为容器元素 -->
+        <template v-if="Math.random() > 0.5">
+            <div>text one</div>
+            <div>type A</div>
+        </template>
+        <template v-else>
+            <div>text two</div>
+            <div>type B</div>
+        </template>
+
+        <!-- if和else切换的时候，会尽量复用原先的元素 -->
+        <template v-if="loginType === 'username'">
+            <label>Username</label>
+            <input placeholder="Enter your username">
+            </template>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address">
+        </template>
+
+        <!-- 使用key，if和else切换的时候，就可以不复用原先的元素 -->
+        <template v-if="loginType === 'username'">
+            <label>Username</label>
+            <input placeholder="Enter your username" key="usernameInput">
+            </template>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address" key="emailInput">
+        </template>
+
+        <button @click="loginType === 'username' ? loginType = 'email' : loginType = 'username'">切换登录方式</button>
+
+        <!-- v-if和v-else会修改DOM元素，而v-show仅仅用display属性切换显示隐藏 -->
+        <div v-show="Math.random() > 0.5">
+            hello vue
+        </div>
+
+        <!-- v-for比v-if有更高的优先级 -->
+        <div v-for="item in itemArr" v-if="itemArr">item</div>
+    </div>
+    
+
+    <script src="index.js"></script>
+</body>
+</html>

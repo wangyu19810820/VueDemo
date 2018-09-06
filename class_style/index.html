@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="vm1" v-bind:class="{redColor: isRedColor, 'blueBg': isBlueBg}">
+        hello vue
+    </div>
+    <div id="vm2" v-bind:class="classObject">
+        hello vue
+    </div>
+    <div id="vm3" v-bind:class="[classOne, 'blueBg']">
+        hello vue
+    </div>
+    <div id="vm4" v-bind:class="classArray">
+        hello vue
+    </div>
+    <div id="vm5">
+        <my-component class="redColor blueBg"></my-component>
+    </div>
+    <div id="vm6">
+        <div v-bind:style="{color: curColor, fontSize: curFontSize + 'px'}">
+            hello vue
+        </div>
+        <div v-bind:style="styleObject">hello vue</div>
+        <div v-bind:style="[styleObject, styleObject1]">hello vue</div>
+        <div v-bind:style="{'transform': 'rotate(7deg)'}">
+            hello vue
+        </div>
+        <div :style="{display: ['-webkit-box', '-ms-flexbox', 'flex']}">hello vue</div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
