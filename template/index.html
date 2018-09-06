@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="vm1">
+        <p>{{msg}}</p>
+        <p v-once>一次绑定:{{msg}}</p>
+        <p><button v-on:click="changeMsg">改变</button></p>
+    </div>
+
+    <div id="vm2">
+        <p>{{rawHtml}}</p>
+        <p v-html="rawHtml"></p>
+    </div>
+
+    <div id="vm3">
+        <div id="{{dynamicId}}">aaa</div>
+        <div v-bind:id="dynamicId">aaa</div>
+        <button v-bind:disabled="isDisabled">一个按钮</button>
+        <button v-on:click="change">更改</button>
+    </div>
+
+    <div id="vm4">
+        <p>{{ number + 1}}</p>
+        <p>{{ ok ? 'YES' : 'NO' }}</p>
+        <p>{{ message.split('').reverse().join('') }}</p>
+        <p v-bind:id="'p-' + number">aaaaaaaaaaaa</p>
+    </div>
+
+    <div id="vm5">
+        <div v-if="seen">{{ seen }}</div>
+        <div v-if="emptyContent">aaaa</div>
+    </div>
+
+    
+    <div id="vm6">
+        <div>
+            <a v-bind:href="urlStr" target="_blank">动态url</a>
+        </div>
+        <div>
+            <button v-on:click="changeUrl">按钮</button>
+        </div>
+    </div>
+
+    <div id="vm7">
+        <form action="" v-on:submit.prevent="onSubmit">
+            <button type="submit">提交</button>
+        </form>
+    </div>
+
+    <div id="vm8">
+        <a :href="urlStr" target="_blank">动态url</a>
+        <button @click="changeUrl">更改url</button>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
