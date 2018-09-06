@@ -5,9 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src=""></script>
+    <script src="vue.min.js"></script>
 </head>
 <body>
-    
+    <div id="vm1">
+        <!-- 遍历数组，in和of可以互相替换，可以获取额外索引值 -->
+        <div v-for="msg in msgArr">{{msg}}</div>
+        <div v-for="msg of msgArr">{{msg}}</div>
+        <div v-for="(msg, index) in msgArr">
+            {{ index + 1 }}:{{ msg }}
+        </div>
+        <!-- 遍历对象，可以获取值，键，索引 -->
+        <div v-for="value of someObj">{{value}}</div>
+        <div v-for="(value, key, index in someObj">
+            {{ index + 1 }}:{{ key }}-{{ value }}
+        </div>
+        <!-- 循环4次 -->
+        <div v-for="item in 4">item</div>
+    </div>
+
+    <!-- v-bind:key用特征值标识元素，可以提升性能 -->
+    <div id="vm2">
+        <div v-for="item in itemArr" v-bind:key="item.id">
+            {{ item.id }}:{{ item.text }}
+        </div>
+        <button v-on:click="changeItemArr">改变值</button>
+    </div>
+
+    <div id="vm3">
+        <!-- this.msgArr[1] = 'dd'; this.msgArr.length = 2; 并不能改变视图，需用特殊方式 -->
+        <div v-for="msg in msgArr">{{msg}}</div>
+        <button v-on:click="change1">改变值方式1</button>
+        <button v-on:click="change2">改变值方式2</button>
+        <button v-on:click="change3">改变值方式3</button>
+        <button v-on:click="change4">改变值方式4</button>
+    </div>
+
+    <div id="vm4">
+        <!-- 过滤和排序，可以考虑用计算属性或者函数 -->
+        <span v-for="num in nums">{{ num }}</span><br/>
+        <span v-for="num in evenNums">{{ num }}</span><br/>
+        <span v-for="num in sort(nums)">{{ num }}</span><br/>
+    </div>
+
+    <div id="vm5">
+        <ul>
+            <!-- 用包装元素template作为v-for的宿主元素 -->
+            <template v-for="(msg, key, index) in someObj">
+                <li>{{ index }}</li>
+                <li>{{ key }}</li>
+                <li>{{ msg }}</li>
+            </template>
+        </ul>
+    </div>
+
+    <div id="vm6">
+        <ul>
+            <!-- v-for的优先级大于v-if，先执行v-for，后执行v-if -->
+            <li v-for="msg in someObj" v-if="msg.length >= 3">{{ msg }}</li>
+        </ul>
+    </div>
+
+    <div id="vm7">
+        <form action="" v-on:submit.prevent="onSubmit">
+            <input type="text" v-model="inputHeroName">
+            <input type="submit" value="提交">
+        </form>
+        <ul>
+            <!-- 在组件上应用v-for -->
+            <hero-name v-for="(hero, index) in heroArray" v-bind:key="hero.id"
+                    v-bind:id="hero.id"
+                    v-bind:name="hero.name"
+                    v-on:remove="heroArray.splice(index, 1)"></hero-name>
+            <li is="hero-name"
+                v-for="(hero, index) in heroArray" v-bind:key="hero.id"
+                v-bind:id="hero.id"
+                v-bind:name="hero.name"
+                v-on:remove="heroArray.splice(index, 1)">
+            </li>
+        </ul>
+    </div>
+
+    <script src="index.js"></script>
 </body>
 </html>
