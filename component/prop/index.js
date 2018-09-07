@@ -72,6 +72,7 @@ Vue.component('my-component4', {
 
 // 默认组件会在根元素上合并html的attribute，css的class和style
 // inheritAttrs: false后，css的class和style还会合并，但是html的attribute不合并了
+// 可以用$attrs获取宿主元素的html的attribute
 Vue.component('my-component5', {
     inheritAttrs: false,
     template: '<div data-id=2 class="classA" style="color:red">{{$attrs["data-title"]}}</div>',

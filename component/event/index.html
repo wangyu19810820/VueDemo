@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="vm1">
+        {{ title }}
+        <my-component1 v-on:my-event="alert($event)"></my-component1>
+        
+        <div>
+            <my-component2 v-model="title"></my-component2>
+        </div>
+        <div>
+            <my-component3 v-model="title"></my-component3>
+        </div>        
+
+        <my-component4 v-on:focus.native="console.log('ok')"></my-component4>
+        <my-component5 title="ok" v-model="title" v-on:focus="console.log('ok')"></my-component5>
+        <my-component6 v-bind:title.sync="title"></my-component6>
+        
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
