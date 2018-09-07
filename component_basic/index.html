@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="vm1">
+        <div>
+            <button-counter></button-counter>
+            <button-counter></button-counter>
+            <button-counter></button-counter>
+        </div>
+
+        <div :style="{fontSize: postFontSize + 'em'}">
+            <blog-post v-for="post in postArr" 
+                    v-bind:title="post.title" v-bind:content="post.content"
+                    v-on:enlarge="postFontSize += $event"
+                    v-on:small="smallPostSize"
+                    ></blog-post>
+        </div>
+        <div>{{ postArrJson }}</div>
+
+    </div>
+
+    <div id="vm2">
+        <alert-box>Something bad happened.</alert-box>
+    </div>
+
+    <div id="vm3">
+        <button v-for="comp in componetArr" v-on:click="curComponent = comp">comp</button>
+        <component v-bind:is="curComponent"></component>
+    </div>
+
+    <div id="vm4">
+        <table>
+            <tr v-for="i in 4" is="some-row"></tr>
+        </table>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
