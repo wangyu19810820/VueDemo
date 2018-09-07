@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="vm1">
+        <my-component1 v-bind:post-title="postTitleValue"></my-component1>
+        <my-component2></my-component2>
+        <my-component3 v-bind:id="id" :title="postTitleValue"
+                :is-posted="isPosted"
+                :author="author" :comments="comments"></my-component3>
+
+        <!-- 传递静态Prop, bool值比较特殊，除了常规写法外，还有简写，有代表true，无代表false -->
+        <!-- 字符串采用类html属性的写法，其他类型的都可以采用绑定写法 -->
+        <my-component3 :id="42" title="传递静态或动态 Prop"
+                is-posted
+                :author="{firstName: 'jim',lastName: 'green'}"
+                :comments="['a', 'b']"></my-component3>     
+                
+        <!-- 绑定一个对象，对象属性和组件props属性对应起来 -->
+        <my-component3 v-bind="post"></my-component3>
+        
+        <!-- 确保数据单向流动，避免预期外的互相影响 -->
+        <div>
+            <my-component4 v-bind:count="count" :author="author"></my-component4>
+            <button @click="add">{{count + name}}</button>
+        </div>
+        
+
+        <my-component5 data-title="aa" class="classB" style="background-color:blue;" :title="postTitleValue"></my-component5>
+
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
