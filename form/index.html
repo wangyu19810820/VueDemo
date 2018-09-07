@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <form id="vm1">
+        <p><input type="text" v-model="textField">{{ textField }}，{{ typeof textField }}</p>
+        <!-- 失去焦点，文本框内容改变时才触发更新model -->
+        <p><input type="text" v-model.lazy="textField">{{ textField }}</p>
+        <!-- 可转换成number型的时候，将model的值转成number -->
+        <p><input type="text" v-model.number="textField1">{{ textField1 }}，{{ typeof textField1 }}</p>
+        <!-- 去除首尾空白字符 -->
+        <p><input type="text" v-model.trim="textField">{{ textField }}</p>
+
+        <!-- .lazy，.number，.trim在textarea上也有效 -->
+        <p><textarea v-model="textArea"></textarea>{{ textArea }}</p>
+        <!-- checkbox绑定字符串的时候，起作用的true-value，false-value，默认true，false -->
+        <p><input type="checkbox" v-model="checkBoxValue" true-value="是" false-value="否">{{ checkBoxValue }}</p>
+        <!-- checkbox绑定数组的时候，起作用的value -->
+        <p>
+            <input type="checkbox" v-model="checkBoxValueArr" value="music">
+            <input type="checkbox" v-model="checkBoxValueArr" value="sport">
+            <input type="checkbox" v-model="checkBoxValueArr" value="art">
+            {{ checkBoxValueArr }}
+        </p>
+        <p>
+            <input type="radio" v-model="radioValue" value="music">
+            <input type="radio" v-model="radioValue" value="sport">
+            <input type="radio" v-model="radioValue" value="art">
+            {{ radioValue }}
+        </p>
+        <!-- 单选形式的select，option的值是显示值，绑定字符串 -->
+        <p>
+            <select v-model="selectValue">
+                <option v-for="option in optionValueList">{{ option }}</option>
+            </select>
+            {{ selectValue }}
+        </p>
+        <!-- 多选形式的select，option的值是显示值，绑定字符串数组 -->
+        <p>
+            <select v-model="selectValueArr" multiple>
+                <option v-for="option in optionValueList">{{ option }}</option>
+            </select>
+            {{ selectValueArr }}
+        </p>
+
+        <!-- 单选形式的select，option的值是自定义对象，绑定对象 -->
+        <p>
+            <select v-model="selectValue1">
+                <option v-for="(v, i) in optionValueList" v-bind:value="{num: i, value:v}">{{ v }}</option>
+            </select>
+            {{ selectValue1 }}
+        </p>
+        <!-- 多选形式的select，option的值是自定义对象，绑定对象数组 -->
+        <p>
+            <select v-model="selectValueArr1" multiple>
+                <option v-for="(v, i) in optionValueList" v-bind:value="{num: i, value:v}">{{ v }}</option>
+            </select>
+            {{ selectValueArr1 }}
+        </p>
+        
+    </form>
+    <script src="index.js"></script>
+</body>
+</html>
