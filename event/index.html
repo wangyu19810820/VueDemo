@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+    <style>
+        #vm2 div {
+            margin: 20px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="vm1">
+        <p>{{ counter }}</p>
+        <button @click="counter += 1">点击+1</button>
+        <button @click="addCount">点击+1</button>
+        <button @click="addCount(2)">点击+2</button>
+        <button data-num=3 @click="addCount($event)">点击+3</button>
+    </div>
+
+    <div id="vm2">
+        <!-- prevent阻止事件默认行为，如submit按钮提交表单，超链接跳转页面 -->
+        <!-- passive通知浏览器自定义事件监听不会阻止事件默认行为，以便浏览器能尽快加载事件默认行为，最常用于scroll事件，减少卡顿 -->
+        <!-- prevent和passive不应联合使用，如果联用，prevent没有效果 -->
+        <a href="http://www.sina.com" target="_blank">点击跳转</a>
+        <a href="http://www.sina.com" target="_blank" @click.prevent="clickInner">点击不跳转跳转</a>
+        <a href="http://www.sina.com" target="_blank" @click.prevent.passive="clickInner">点击跳转跳转</a>
+    
+        <!-- stop阻止事件在DOM中传播 -->
+        <p>middle中stop了事件</p>
+        <div @click="clickOuter">
+            <div @click.stop="clickMiddle">
+                <div @click="clickInner">点击</div>
+            </div>
+        </div>
+
+        <!-- capture表明该事件监听发生在事件捕获期，而非冒泡期 -->
+        <p>middle中事件发生是冒泡期，outer和inner事件都发生在捕获期</p>
+        <div @click.capture="clickOuter">
+            <div @click="clickMiddle">
+                <div @click.capture="clickInner">点击</div>
+            </div>
+        </div>
+
+        <!-- self表明，该事件只有源自自身，才会触发 -->
+        <p>middle中事件只有是点击自身才会触发</p>
+        <div @click="clickOuter">
+            <div @click.self="clickMiddle">
+                <div @click="clickInner">点击</div>
+            </div>
+        </div>
+
+        <!-- once表明，该事件监听只触发一次 -->
+        <p>middle中事件只会触发一次</p>
+        <div @click="clickOuter">
+            <div @click.once="clickMiddle">
+                <div @click="clickInner">点击</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vm3">
+        <div>
+            <!-- 按下弹起才会触发 -->
+            <input type="text" @keyup="keyUp">
+            <!-- keyCode是13才会触发，其实就是回车键 -->
+            <input type="text" @keyup.13="keyUp">
+            <!-- KeyboardEvent.key定义的“键名称”，向下翻页键才触发 -->
+            <input type="text" @keyup.page-down="keyUp">
+        </div>
+
+        <div>
+            <!-- vue内置的“键名称”，回车键才会触发 -->
+            <input type="text" @keyup.enter="keyUp">
+            <!-- tab键才会触发，获取焦点才触发，失去焦点不触发 -->
+            <input type="text" @keyup.tab="keyUp">
+            <!-- delete和backspace触发 -->
+            <input type="text" @keyup.delete="keyUp">
+            <!-- esc触发 -->
+            <input type="text" @keyup.esc="keyUp">
+            <!-- 空格键触发 -->
+            <input type="text" @keyup.space="keyUp">
+            <!-- 向上键触发 -->
+            <input type="text" @keyup.up="keyUp">
+            <!-- 向下键触发 -->
+            <input type="text" @keyup.down="keyUp">
+            <!-- 向左键触发 -->
+            <input type="text" @keyup.left="keyUp">
+            <!-- 向下键触发 -->
+            <input type="text" @keyup.right="keyUp">
+        </div>
+
+        <div>
+            <!-- ctrl和其他按键一同按下才触发 -->
+            <input type="text" @keyup.ctrl="keyUp">
+            <!-- alt和A按键一同按下才触发，选定按键组合的时候，避开浏览器快捷键 -->
+            <input type="text" @keyup.alt.65="keyUp">
+            <!-- shift和A按键一同按下才触发 -->
+            <input type="text" @keyup.shift.65="keyUp">
+        </div>
+
+        <div>
+            <!-- 鼠标左键按下才触发 -->
+            <button @click.left="clickEvent">点击</button>
+            <!-- 鼠标中键按下才触发 -->
+            <button @click.middle="clickEvent">点击</button>
+            <!-- 鼠标右键按下才触发 -->
+            <button @click.right="clickEvent">点击</button>
+            <!-- 鼠标右键+alt按下才触发 -->
+            <button @click.right.alt.exact="clickEvent">点击</button>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
