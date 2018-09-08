@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="vm1">
-        {{ title }}
+        {{ title }}, {{ author.firstName }}, {{ author.lastName }}
         <my-component1 v-on:my-event="alert($event)"></my-component1>
         
         <div>
@@ -22,7 +22,8 @@
         <my-component4 v-on:focus.native="console.log('ok')"></my-component4>
         <my-component5 title="ok" v-model="title" v-on:focus="console.log('ok')"></my-component5>
         <my-component6 v-bind:title.sync="title"></my-component6>
-        
+        <my-component7 v-bind.sync="author"></my-component7>
+
     </div>
 
     <script src="index.js"></script>

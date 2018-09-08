@@ -70,17 +70,31 @@ Vue.component('my-component5', {
 // .sync简化双向绑定，页面v-bind:title.sync="title"，组件内触发事件的事件名update:title，其中title是组件的绑定属性名
 Vue.component('my-component6', {
     template: `
-        <label>
+        <div>
             <input v-bind:value="title" v-on:input="$emit('update:title', $event.target.value)">
-        </label>                             
+        </div>                             
     `,
     props: ['title'],
+});
+
+Vue.component('my-component7', {
+    template: `
+        <div>
+            <input v-bind:value="firstName" v-on:input="$emit('update:firstName', $event.target.value)">
+            <input v-bind:value="lastName" v-on:input="$emit('update:lastName', $event.target.value)">
+        </div>                             
+    `,
+    props: ['firstName', 'lastName'],
 });
 
 let vm1 = new Vue({
     el: '#vm1',
     data: {
         title: 'aaa',
+        author: {
+            firstName: 'jim',
+            lastName: 'green',
+        },
     },
     methods: {
 
