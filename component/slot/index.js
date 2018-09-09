@@ -8,11 +8,13 @@ Vue.component('navigation-link', {
     props: ['url'],
 })
 
+// slot位置不单能替换为文本，还能替换成html和组件
 Vue.component('red-font', {
     template: `<span style="color:red">{{ value }}</span>`,
     props: ['value'],
 })
 
+// 命名slot
 Vue.component('base-layout', {
     template: `
         <div class="container">
@@ -31,6 +33,7 @@ Vue.component('base-layout', {
     `,
 })
 
+// 插槽替换内容，只能访问宿主元素作用域内属性，不能访问组件作用域内属性
 Vue.component('scope-1', {
     template: `
         <div>
@@ -45,6 +48,8 @@ Vue.component('scope-1', {
     }
 })
 
+// 组件可以通过v-bind向slot内容传递数据
+// slot内通过slot-scope获取传递内容组合后的对象
 Vue.component('msg-list', {
     template: `
         <ul>
