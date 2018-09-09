@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="vm1">
+        <navigation-link url="hrefs.href">
+            <em><red-font v-bind:value="hrefs.label"></red-font></em>
+        </navigation-link>
+
+        <base-layout>
+            <template slot="header">
+                <h1>h1</h1>
+                <p>p1</p>
+            </template>
+
+            <p>p2</p>
+            <p>p3</p>
+
+            <p slot="footer">p4</p>
+        </base-layout>
+ 
+        <base-layout>
+            <template slot="header">
+                <h1>h1</h1>
+                <p>p1</p>
+            </template>
+
+            <p>p2</p>
+            <p>p3</p>
+        </base-layout>
+
+        <scope-1>
+            <!-- <p>{{ label1 }}</p> -->
+            <p>{{ label2 }}</p>
+        </scope-1>
+
+        <msg-list v-bind:msglist="list">
+            <template slot-scope="slotscope">
+                v:{{ slotscope.m }}
+            </template>
+        </msg-list>
+
+        <!-- { m }是es6的对象解构语法，提取有用数据 -->
+        <msg-list v-bind:msglist="list">
+            <label slot-scope="{ m }">
+                v:{{ m }}
+            </label>
+        </msg-list>
+
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
