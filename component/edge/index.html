@@ -21,8 +21,24 @@
         </div>
 
         <my-component9></my-component9>
+
+        <tree-folder :folder="tree"></tree-folder>
+
+        <my-component10 inline-template>
+            <div>this is inline-template</div>
+        </my-component10>
+
+        <my-component11></my-component11>
+
+        <my-component12 v-bind:title1="title"></my-component12>
+        <div>
+            <button @click="forceUpdate()">强制更新</button>
+        </div>
     </div>
 
+    <script type="text/x-template" id="my-component11-template">
+        <p>Hello hello x-template</p>
+    </script>
     <script src="index.js"></script>
 </body>
 </html>

@@ -136,16 +136,78 @@ Vue.component('my-component9', {
             <my-component9 v-if="Math.random() > 0.5"></my-component9>
         </div>
     `,
-    props: [''],
 });
+
+// 互相引用，在全局注册中不存在此问题
+Vue.component('tree-folder', {
+    template: `
+        <p>
+            <span style="color:red">{{ folder.name }}</span>
+            <tree-folder-contents :children="folder.children"/>
+        </p>
+    `,
+    props: ['folder'],
+})
+
+Vue.component('tree-folder-contents', {
+    template: `
+        <ul>
+            <li v-for="child in children">
+                <tree-folder v-if="child.children" :folder="child"/>
+                <span v-else>{{ child.name }}</span>
+            </li>
+        </ul>
+    `,
+    props: ['children'],
+})
+
+Vue.component('my-component11', {
+    template: '#my-component11-template'
+})
+
+Vue.component('my-component12', {
+    template: `
+        <div v-once>
+            v-once:{{ $root.title }}
+        </div>
+    `,
+    props: ['title1'],
+})
 
 let vm1 = new Vue({
     el: '#vm1',
     data: {
         title: '处理边界情况',
         curComponent: '',
+        tree: {
+            name: 'root',
+            children: [
+                {
+                    name: 'fold1',
+                    children: [
+                        {
+                            name: 'file11',
+                        },
+                        {
+                            name: 'file22',
+                        }
+                    ],
+                },
+                {
+                    name: 'file2',
+                },
+            ],
+        }
+    },
+    components: {
+        'my-component10': {
+
+        }
     },
     methods: {
-
-    }
+        forceUpdate() {
+            // 仅仅影响实例本身和插入插槽内容的子组件
+            this.$forceUpdate();
+        }
+    },
 })
