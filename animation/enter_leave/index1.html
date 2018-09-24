@@ -1,0 +1,65 @@
+<!--
+    css3动画分成两类：过渡和关键帧动画
+    过渡，描述了哪些css属性的变更，会触发过渡动画。all代表所有css属性。
+    关键帧动画，先定义一个动画，在css的类名中引用此动画
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.js"></script>
+    <script>
+        function div1Click() {
+            $('#div1').removeClass('div').addClass('redBg');
+        }
+
+        function div2Click() {
+            $('#div2').toggleClass('blueBg');
+        }
+    </script>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            line-height: 100px;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .div1 {
+            opacity: 0;
+        }
+
+        .redBg {
+            transition: all 2s;
+            background: red;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            opacity: 1;
+        }
+
+        .blueBg {
+            animation: mymove 2s;
+        }
+
+        @keyframes mymove {
+            form {
+                background:red;
+            }
+            to {
+                background:blue;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="div1" class="div1" onclick="div1Click()">div1</div>
+    <div id="div2" onclick="div2Click()">div2</div>
+    <button onclick="div1Click()">button</button>
+</body>
+</html>

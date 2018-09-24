@@ -1,0 +1,101 @@
+p {
+    color: red;
+}
+div {
+    min-height: 50px;
+    border: 1px solid black;
+}
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+
+.fade1-enter, .fade1-leave-to {
+    transform: translateX(10px);
+}
+.fade1-enter-active, .fade1-leave-active {
+    transition: all 1s cubic-bezier(1.0, 0.5, 0.5, 1.0);
+}
+
+.fade2-enter-active {
+    animation: bounce-in .5s;
+}
+.fade2-leave-active {
+    animation: bounce-in .5s reverse;
+}
+
+@keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+}
+
+.fade3-ac {
+    transition: opacity .5s;
+}
+
+.fade3-to {
+    opacity: 0;
+}
+
+.custom-appear-class {
+    opacity: 0;
+    font-size: 0px;
+}
+
+.custom-appear-active-class {
+    transition: all 2s;
+}
+
+.custom-appear-to-class {
+    font-size: 20px;
+}
+
+.fade8-enter, .fade8-leave-to {
+    opacity:0;
+}
+.fade8-enter-active, .fade8-leave-active{
+    transition:opacity .5s;
+}
+
+.fade9-enter, .fade9-leave-to {
+    opacity:0;
+}
+.fade9-enter-active, .fade9-leave-active{
+    transition:opacity .5s;
+}
+
+#vm10 {
+    position: relative;
+}
+#vm10 button {
+    position: absolute;
+    left: 60px;
+}
+.fade10-enter, .fade10-leave-to {
+    opacity:0;
+}
+.fade10-enter {
+    transform:translateX(30px);
+}
+.fade10-leave-to {
+    transform:translateX(-30px);
+}
+.fade10-enter-active, .fade10-leave-active{
+    transition: 1s;
+}
+.fade11-enter-active, .fade11-leave-active {
+    transition: opacity .3s ease;
+  }
+.fade11-enter, .fade11-leave-to {
+    opacity: 0;
+}

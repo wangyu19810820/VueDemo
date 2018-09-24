@@ -1,0 +1,45 @@
+.list-item {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.fade1-enter-active, .fade1-leave-active {
+    transition: all 1s;
+}
+
+.fade1-enter, .fade1-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.fade2-move, .fade2-enter-active, .fade2-leave-active {
+    transition: all 1s;
+}
+
+.fade2-leave-active{position:absolute;}
+
+.fade2-enter, .fade2-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.fade3-container {
+    width: 300px;
+
+}
+
+.fade3-item {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 20px;
+    align-content: center;
+}
+
+.fade3-move {
+    transition: all 1s;
+}
+
+#vm4 p {
+    opacity: 1;
+}

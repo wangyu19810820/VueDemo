@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="vue.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 借助6个css类实现css动画。底层是css3动画中的“过渡”和“关键帧动画” -->
+    <!-- .xxx-enter, .xxx-enter-active，.xxx-enter-to -->
+    <!-- .xxx-leave，.xxx-leave-active，.xxx-leave-to -->
+
+    <!-- 运用css过渡，过渡加载在.xxx-enter-active和.xxx-leave-active -->
+    <div id="vm1">
+        <button @click="show = !show">Toggle</button>
+        <div>
+            <transition name="fade">
+                <p v-if="show">hello</p>
+            </transition>
+        </div>
+        <div>
+            <transition name="fade1">
+                <p v-if="show">vue</p>
+            </transition>
+        </div>
+    </div>
+    
+    <!-- 运用css过渡，过渡加载在.xxx-enter-active和.xxx-leave-active -->
+    <div id="vm2">
+        <button @click="show = !show">Toggle show</button>
+        <transition name="fade2">
+            <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+        </transition>
+    </div>
+
+    <!-- 运用vue动画的时候，自定义特殊的类名，可以很好的和css动画库结合 -->
+    <div id="vm3">
+        <button @click="show = !show">Toggle show</button>
+        <transition name="fade3" 
+                leave-active-class="fade3-ac" leave-to-class="fade3-to"
+                enter-active-class="fade3-ac" enter-class="fade3-to">
+            <p v-if="show">Lorem ipsum dolor sit amet</p>
+        </transition>
+    </div>
+
+    <!-- 定义Vue动画持续时间，是Vue变换类名的时间，实际动画效果持续时间取决于css动画的设置 -->
+    <!-- Vue动画各个阶段的js钩子 -->
+    <div id="vm4">
+        <button @click="show = !show">Toggle show</button>
+        <transition :duration="{ enter: 2000, leave: 3000 }" name="fade"
+                v-on:before-enter="beforeEnter"
+                v-on:enter="enter"
+                v-on:after-enter="afterEnter"
+                v-on:enter-cancelled="enterCancelled"
+                v-on:before-leave="beforeLeave"
+                v-on:leave="leave"
+                v-on:after-leave="afterLeave"
+                v-on:leave-cancelled="leaveCancelled"
+                >
+            <p v-if="show">hello</p>
+        </transition>
+    </div>
+
+    <!-- Vue用js钩子函数实现js动画 -->
+    <div id="vm5">
+        <button @click="show = !show">Toggle show</button>
+        <transition
+                v-on:before-enter="beforeEnter"
+                v-on:enter="enter"
+                v-on:after-enter="afterEnter"
+                v-on:before-leave="beforeLeave"
+                v-on:leave="leave"
+                v-on:after-leave="afterLeave"
+                >
+            <p v-if="show">hello</p>
+        </transition>
+    </div>
+
+    <!-- 初始渲染的过渡，可自定义css的类名 -->
+    <div id="vm6">
+        <button @click="show = !show">Toggle show</button>
+        <transition appear
+                appear-class="custom-appear-class"
+                appear-active-class="custom-appear-active-class"
+                appear-to-class="custom-appear-to-class">
+            <p v-if="show">hello</p>
+        </transition>
+    </div>
+
+    <!-- 初始渲染的过渡，采用JavaScript控制动画进程 -->
+    <div id="vm7">
+        <button @click="show = !show">Toggle show</button>
+        <transition appear
+                v-on:before-appear="beforeAppear"
+                v-on:appear="appear">
+            <p v-if="show">hello</p>
+        </transition>
+    </div>
+
+    <!-- 多个元素的过渡，进入和离开动画同时发生 -->
+    <div id="vm8">
+        <button @click="show = !show">两个按钮动画同时发生</button>
+        <div>
+            <transition name="fade8">
+                <button v-if="show" key="on">on</button>
+                <button v-else key="off">off</button>
+            </transition>   
+        </div>
+    </div>
+
+    <!-- 多个元素的过渡，进入和离开动画先后发生 -->
+    <div id="vm9">
+        <button @click="show = !show">两个按钮动画先后发生</button>
+        <div>
+            <transition name="fade9" mode="in-out">
+                <button v-bind:key="show ? 'on' : 'off'">
+                    {{ show ? 'on' : 'off' }}
+                </button>
+            </transition>
+        </div>
+        <div>
+            <transition name="fade9" mode="out-in">
+                <button v-bind:key="show ? 'on' : 'off'">
+                    {{ show ? 'on' : 'off' }}
+                </button>
+            </transition>   
+        </div>
+    </div>
+
+    <!-- 多个元素的过渡，绝对定位结合css位移，技术上没什么特殊的，效果还不错 -->
+    <div id="vm10">
+        <div><button @click="show = !show">Toggle show</button></div>
+        <div>
+            <transition name="fade10">
+                <button v-bind:key="show ? 'on' : 'off'">
+                    {{ show ? 'on' : 'off' }}
+                </button>
+            </transition>
+        </div>
+        <div>
+            <transition name="fade10" mode="in-out">
+                <button v-bind:key="show ? 'on' : 'off'">
+                    {{ show ? 'on' : 'off' }}
+                </button>
+            </transition>
+        </div>
+        <div>
+            <transition name="fade10" mode="out-in">
+                <button v-bind:key="show ? 'on' : 'off'">
+                    {{ show ? 'on' : 'off' }}
+                </button>
+            </transition>   
+        </div>
+    </div>
+
+    <!-- 多个组件的过渡，采用动态组件技术 -->
+    <div id="vm11">
+        <span v-for="name in nameList">
+            <input type="radio" v-model="pick" v-bind:value="name" />
+            {{ name }}
+        </span>
+        <p>{{ pick }}</p>
+        <transition name="fade11" mode="out-in">
+            <component v-bind:is="pick"></component>
+        </transition>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

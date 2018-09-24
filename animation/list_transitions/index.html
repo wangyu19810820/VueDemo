@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="vue.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 列表过渡，和元素过渡基本类似，标签替换成transition-group，tag="p"指定外围包裹元素是<p></p> -->
+    <div id="vm1">
+        <button @click="add">add</button>
+        <button @click="remove">remove</button>
+        <transition-group name="fade1" tag="p">
+            <span v-for="item in items" v-bind:key="item" class="list-item">
+                {{ item }}
+            </span>
+        </transition-group>
+    </div>
+
+    <!-- 不单添加删除列表元素会触发动画，排序也会触发动画 -->
+    <div id="vm2">
+        <button @click="add">add</button>
+        <button @click="remove">remove</button>
+        <button v-on:click="shuffle">Shuffle</button>
+        <transition-group name="fade2" tag="p">
+            <span v-for="item in items" v-bind:key="item" class="list-item">
+                {{ item }}
+            </span>
+        </transition-group>
+    </div>
+
+    <!-- 多维网格也同样可以过渡，内部细节被Vue封装，使用起来和普通列表过渡没区别 -->
+    <div id="vm3">
+        <button v-on:click="shuffle">Shuffle</button>
+        <transition-group name="fade3" tag="div" class="fade3-container">
+            <span v-for="item in items" v-bind:key="item" class="fade3-item">
+                {{ item }}
+            </span>
+        </transition-group>
+    </div>
+
+    <!-- 用JavaScript的回调函数，控制列表过渡，使用方法上，与元素过渡基本类似 -->
+    <div id="vm4">
+        <input v-model="query" />
+        <transition-group name="fade4" tag="div"
+                v-on:before-enter="beforeEnter"
+                v-on:enter="enter"
+                v-on:leave="leave">
+            <p v-for="item in computedList" v-bind:key="item">{{ item }}</p>
+        </transition-group>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
