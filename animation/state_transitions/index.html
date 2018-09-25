@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="vue.min.js"></script>
+    <script src="TweenMax.min.js"></script>
+    <script src="tween.js"></script>
+    <script src="color-js.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div id="vm1">
+        <input type="number" v-model.number="number" step="20" />
+        <p>{{ animatedNumber }}</p>
+    </div>
+
+    <div id="vm2">
+        <input
+            v-model="colorQuery"
+            v-on:keyup.enter="updateColor"
+            placeholder="Enter a color"
+        >
+        <button v-on:click="updateColor">Update</button>
+        <p>Preview:</p>
+        <span
+            v-bind:style="{ backgroundColor: tweenedCSSColor }"
+            class="example-7-color-preview"
+        ></span>
+        <p>{{ tweenedCSSColor }}</p>
+    </div>
+
+    <div id="vm3">
+        <input v-model.number="firstNumber">+
+        <input v-model.number="secondNumber">=
+        {{ resultNumber }}<br/>
+        <animated-integer v-bind:value="firstNumber"></animated-integer>+
+        <animated-integer v-model="secondNumber"></animated-integer>=
+        <animated-integer v-model="resultNumber"></animated-integer>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
