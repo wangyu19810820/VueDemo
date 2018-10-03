@@ -40,10 +40,10 @@ const Foo = {
         },
     }
 }
+
 const Bar = { 
     template: `
         <div>
-            <div v-if="loading">Loading...</div>
             <div v-if="error">{{ error }}</div>
             <div v-if="address">
                 <p>city:{{ address.city }}</p>
@@ -53,14 +53,12 @@ const Bar = {
     `,
     data: function() {
         return {
-            loading: true,
             error: null,
             address: null,
         }
     },
     methods: {
         setData(err, address) {
-            this.loading = false;
             if (err) {
                 this.error = err.toString();
             } else {
@@ -79,8 +77,6 @@ const Bar = {
         }, 1000);
     },
     beforeRouteUpdate(to, from, next) {
-        // 其实是同步，这行没效果，文档上也没有这行
-        this.loading = false;
         setTimeout(() => {
             this.setData(null, {
                 city: 'nanjing' + to.params.id, 
