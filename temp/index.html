@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="vue.min.js"></script>
+    <style>
+        .classA {
+            color: red;
+        }
+        .classB {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="vm1">
+        
+        <my-component2 v-if="fontSize === 15"></my-component2>
+        <button @click="fontSize = 11">no change1</button>
+        <my-component4></my-component4>
+
+        <my-component10 inline-template>
+            <div>this is inline-template</div>
+        </my-component10>
+    </div>
+
+    <script type="text/x-template" id="temp1">
+        <p>hello vue</p>
+    </script>
+
+    <script src="index.js"></script>
+</body>
+</html>

@@ -21,9 +21,24 @@
             <a href="#">Hello world!</a>
         </anchored-heading>
 
-        <my-component1 blog-title="hello vue"></my-component1>
+        <my-component1 blog-title="hello vue">bbb</my-component1>
 
         <my-component2></my-component2>
+
+        <my-component3></my-component3>
+
+        <my-component4 v-bind:items="['a', 'b', 'c']"></my-component4>
+
+        <my-component5 v-model="someValue"></my-component5>
+        <input type="text" v-model="someValue" />
+
+        <div>
+            <my-component6></my-component6>
+        </div>
+        
+        <my-component7>
+            <div>text</div>
+        </my-component7>
 
     </div>
 
