@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="vue.min.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Hello Vue</h1>
+        <p>
+            <router-link to="/user/foo">Go to Foo</router-link>
+            <router-link to="/user/bar">Go to Bar</router-link>
+            <router-link to="/user/foo1">Go to foo</router-link>
+            <router-link to="/user/foo2">On Error</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+.router-link-active {
+    color: red;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: all 1s;
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+
+.fade1-enter-active, .fade1-leave-active {
+    transition: all 2s;
+}
+
+.fade1-enter, .fade1-leave-to {
+    opacity: 0;
+}
+
+.fade2-enter-active, .fade2-leave-active {
+    transition: all 0.5s;
+}
+
+.fade2-enter, .fade2-leave-to {
+    opacity: 0;
+}
