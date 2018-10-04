@@ -2,6 +2,7 @@ const User = {
     template: `
         <div class="user">
             <h2>User {{ $route.params.id }}</h2>
+            <router-link to="/user/1/">home</router-link>
             <router-link to="/user/1/profile">profile</router-link>
             <router-link to="/user/1/posts">posts</router-link>
             <router-view></router-view>
@@ -21,6 +22,12 @@ const Posts = {
     `,
 }
 
+const Home = {
+    template: `
+        <div class="user">Home</div>
+    `
+}
+
 const routes = [
     {
         path: '/user/:id',
@@ -33,6 +40,10 @@ const routes = [
             {
                 path: 'posts',
                 component: Posts,
+            },
+            {
+                path: '',
+                component: Home,
             }
         ],
     },
@@ -41,6 +52,8 @@ const routes = [
 const router = new VueRouter({
     routes: routes,
 })
+
+router.push('/user/1')
 
 const app = new Vue({
     router

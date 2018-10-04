@@ -101,6 +101,8 @@ const router = new VueRouter({
     routes: routes,
 })
 
+router.push('/user')
+
 const app = new Vue({
     router
 }).$mount('#app')
